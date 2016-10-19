@@ -16,7 +16,7 @@ namespace Test.Droids
 {
 
     [Activity(Label = "@string/ApplicationName")]
-    public class Activity1: Activity
+    public class Activity1: Activity 
     {
         static readonly string TAG = "X:" + typeof(Activity1).Name;
         Button _button;
