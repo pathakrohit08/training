@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF" >
+
+   <ImageButton
+      android:id="@+id/move_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:background="#FFF"
+      android:src="@drawable/splash_logo" />
+  
+  <LinearLayout
+        android:id="@+id/loginlay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/searchresults_list"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        android:hint="Username"
+        android:padding="@dimen/default_horizontal_padding"
+        android:choiceMode="singleChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+     <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#f7f7f7" />
+    <EditText
+        android:id="@+id/password"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        android:hint="Password"
+        android:padding="@dimen/default_horizontal_padding"
+        android:choiceMode="singleChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+     <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:background="@drawable/sample_button"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginTop="@dimen/default_vertical_padding"/>
+
+       <!--<ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:src="@drawable/googleplus"
+                android:background="@drawable/roundedbutton"
+                android:padding="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="62dp" />-->
+  
+    </LinearLayout>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footer_layout"
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+              android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+   >
+  <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/imageButton_google"
+               android:src="@drawable/googleplus"
+               android:width="50dp" 
+               android:height="50dp"
+               android:background="@drawable/roundedbutton"
+               android:layout_marginRight="62dp"
+               android:padding="1dp"/>
+  <!--<ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton_fb"
+                android:src="@drawable/facebook"
+                android:width="50dp" 
+                android:height="50dp"
+                android:background="@drawable/roundedbutton"
+                android:layout_marginRight="62dp"
+                android:padding="1dp"/>
+ 
+  <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/imageButton_link"
+               android:src="@drawable/linkedin"
+               android:width="50dp" 
+                android:height="50dp"
+               android:background="@drawable/roundedbutton"
+               android:layout_marginRight="62dp"
+               android:padding="1dp"/>-->
+</LinearLayout>
+</RelativeLayout>
+
