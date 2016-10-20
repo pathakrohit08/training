@@ -1,11 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
-using Android.Util;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
+using MvvmCross.Droid.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +15,30 @@ using System.Threading.Tasks;
 
 namespace Test.Droids
 {
-   // [Activity(Theme = "@style/Theme.AppCompat.Light", MainLauncher = true, NoHistory = true)]
-    public class SsplashActivity:Activity
+    [Activity(
+        MainLauncher = true,
+        Label = "@string/ApplicationName",
+        Theme = "@style/AppTheme", NoHistory = true,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
+    public class NewSplashScreen : MvxSplashScreenActivity
     {
         LinearLayout mLinearLayout;
         LinearLayout mFooterLayout;
         ImageButton im;
         ISharedPreferencesEditor editor;
         ISharedPreferences prefs;
+
+        public NewSplashScreen()
+        : base(Resource.Drawable.activity_splash)
+        {
+
+        }
+    
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Drawable.activity_splash);
+           // SetContentView(Resource.Drawable.activity_splash);
             mLinearLayout = FindViewById<LinearLayout>(Resource.Id.loginlay);
             mLinearLayout.Visibility = ViewStates.Gone;
 
@@ -37,8 +50,8 @@ namespace Test.Droids
 
             prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             editor = prefs.Edit();
-            //editor.Clear();
-            //editor.Commit();
+            editor.Clear();
+            editor.Commit();
 
             something.ContinueWith(t =>
             {
@@ -60,12 +73,12 @@ namespace Test.Droids
 
                 #endregion
 
-               
+
 
                 string userName = prefs.GetString("petSketch_username", null);
                 string password = prefs.GetString("petSketch_pwd", null);
 
-                if(string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
+                if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
                     PerformAnimation();
                 else
                     PerformTask();
@@ -76,8 +89,8 @@ namespace Test.Droids
         private async Task DoSomeTaskAsync()
         {
             await Task.Delay(5000);
-            
-           
+
+
         }
 
         private void PerformTask()
@@ -93,8 +106,8 @@ namespace Test.Droids
             animation.Duration = 1000;
             animation.AnimationEnd += Animation_AnimationEnd;
             im.StartAnimation(animation);
-            
-            
+
+
         }
 
         private void Animation_AnimationEnd(object sender, Animation.AnimationEndEventArgs e)
@@ -113,29 +126,5 @@ namespace Test.Droids
             base.OnResume();
 
         }
-    }
-    class ResizeAnimation : Animation
-    {
-        private int startHeight;
-        private int deltaHeight; // distance between start and end height
-        private ImageButton view;
-
-        public ResizeAnimation(ImageButton v)
-        {
-            this.view = v;
-        }
-
-        protected override void ApplyTransformation(float interpolatedTime, Transformation t)
-        {
-            view.LayoutParameters.Height = (int)(startHeight + deltaHeight * interpolatedTime);
-            view.RequestLayout();
-        }
-        public void setParams(int start, int end)
-        {
-
-            this.startHeight = start;
-            deltaHeight = end - startHeight;
-        }
-
     }
 }

@@ -29,10 +29,7 @@
         android:choiceMode="singleChoice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-     <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="#f7f7f7" />
+    
     <EditText
         android:id="@+id/password"
         android:divider="@null"
@@ -49,6 +46,44 @@
             android:text="Login"
             android:background="@drawable/sample_button"
             android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginTop="@dimen/default_vertical_padding"/>
+    
+     <TextView
+            android:id="@+id/tvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="OR"
+            android:textColor="#FFFFFF"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@id/tvText"
+            android:background="#FF0000"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@id/tvText"
+            android:background="#FF0000"
+            />
+    
+    <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Connect with google"
+            android:background="@drawable/sample_button"
+            android:textColor="@color/black"
             android:textSize="17sp"
             android:layout_marginTop="@dimen/default_vertical_padding"/>
 
@@ -71,7 +106,7 @@
               android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
    >
-  <ImageButton
+  <!--<ImageButton
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:id="@+id/imageButton_google"
@@ -80,7 +115,7 @@
                android:height="50dp"
                android:background="@drawable/roundedbutton"
                android:layout_marginRight="62dp"
-               android:padding="1dp"/>
+               android:padding="1dp"/>-->
   <!--<ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,6 +137,18 @@
                android:background="@drawable/roundedbutton"
                android:layout_marginRight="62dp"
                android:padding="1dp"/>-->
+ <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Sign up."
+            android:background="@drawable/sample_button"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginTop="@dimen/default_vertical_padding"
+            android:layout_marginLeft="@dimen/default_vertical_padding"
+            android:layout_marginRight="@dimen/default_vertical_padding"
+            android:layout_marginBottom="@dimen/default_vertical_padding" />
 </LinearLayout>
 </RelativeLayout>
 
