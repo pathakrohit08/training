@@ -24,7 +24,7 @@ namespace Test.Droids
         ISharedPreferences prefs;
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+           // base.OnCreate(bundle);
             SetContentView(Resource.Drawable.activity_splash);
             mLinearLayout = FindViewById<LinearLayout>(Resource.Id.loginlay);
             mLinearLayout.Visibility = ViewStates.Gone;

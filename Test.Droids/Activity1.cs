@@ -18,7 +18,7 @@ namespace Test.Droids
     [Activity(Label = "Main Activity", Theme = "@style/AppTheme",
       LaunchMode = LaunchMode.SingleTop,
       ScreenOrientation = ScreenOrientation.Portrait,
-      Name = "mytrains.droid.activities.MainActivity")]
+      Name = "Test.Droids.Activity1")]
     public class Activity1 : MvxCachingFragmentCompatActivity<MainViewModel>
     {
         static readonly string TAG = "X:" + typeof(Activity1).Name;

@@ -132,6 +132,7 @@
     <AndroidResource Include="Resources\layout\toolbar.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\values\splashstyle.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -213,6 +214,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawer_shadow_light.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyTrains.Core\MyTrains.Core.csproj">
+      <Project>{c491aa8a-5647-47c6-96b1-f68015a9017e}</Project>
+      <Name>MyTrains.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

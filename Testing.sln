@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Librarires", "Librarires", 
 		Libraries\MvvmCross.Droid.Support.V7.Fragging.4.1.1\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.Fragging.dll = Libraries\MvvmCross.Droid.Support.V7.Fragging.4.1.1\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.Fragging.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTrains.Core", "MyTrains.Core\MyTrains.Core.csproj", "{C491AA8A-5647-47C6-96B1-F68015A9017E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{C9A06DB7-BC3E-4B56-82D6-AF17056FB501}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9A06DB7-BC3E-4B56-82D6-AF17056FB501}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9A06DB7-BC3E-4B56-82D6-AF17056FB501}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C491AA8A-5647-47C6-96B1-F68015A9017E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C491AA8A-5647-47C6-96B1-F68015A9017E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C491AA8A-5647-47C6-96B1-F68015A9017E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C491AA8A-5647-47C6-96B1-F68015A9017E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

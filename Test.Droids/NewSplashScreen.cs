@@ -18,7 +18,7 @@ namespace Test.Droids
     [Activity(
         MainLauncher = true,
         Label = "@string/ApplicationName",
-        Theme = "@style/AppTheme", NoHistory = true,
+        Theme = "@style/Theme.Splash", NoHistory = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class NewSplashScreen : MvxSplashScreenActivity
@@ -53,42 +53,43 @@ namespace Test.Droids
             editor.Clear();
             editor.Commit();
 
-            something.ContinueWith(t =>
-            {
-                #region old
+            //something.ContinueWith(t =>
+            //{
+            //    #region old
 
-                // StartActivity(new Intent(Application.Context, typeof(Activity1)));
-
-
-
-                // ResizeAnimation a = new ResizeAnimation(im);
-                // a.Duration = 1000;
-                // a.setParams(im.Height, 20);
-                //// im.StartAnimation(a);
-
-                // AnimationSet s = new AnimationSet(false);//false means don't share interpolators
-                // s.AddAnimation(animation);
-                // //s.AddAnimation(a);
-                // im.StartAnimation(s);
-
-                #endregion
+            //    // StartActivity(new Intent(Application.Context, typeof(Activity1)));
 
 
 
-                string userName = prefs.GetString("petSketch_username", null);
-                string password = prefs.GetString("petSketch_pwd", null);
+            //    // ResizeAnimation a = new ResizeAnimation(im);
+            //    // a.Duration = 1000;
+            //    // a.setParams(im.Height, 20);
+            //    //// im.StartAnimation(a);
 
-                if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
-                    PerformAnimation();
-                else
-                    PerformTask();
+            //    // AnimationSet s = new AnimationSet(false);//false means don't share interpolators
+            //    // s.AddAnimation(animation);
+            //    // //s.AddAnimation(a);
+            //    // im.StartAnimation(s);
 
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            //    #endregion
+
+
+
+            //    string userName = prefs.GetString("petSketch_username", null);
+            //    string password = prefs.GetString("petSketch_pwd", null);
+
+            //    if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
+            //        PerformAnimation();
+            //    else
+            //        PerformTask();
+
+            //}, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private async Task DoSomeTaskAsync()
         {
             await Task.Delay(5000);
+            PerformAnimation();
 
 
         }

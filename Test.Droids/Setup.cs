@@ -11,7 +11,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using Test.Droids;
 
-namespace Test.Droid
+namespace Test.Droids
 {
     public class Setup : MvxAndroidSetup
     {
@@ -21,7 +21,7 @@ namespace Test.Droid
 
         protected override IMvxApplication CreateApp()
         {
-            return new Core.App();
+            return new MyTrains.Core.App();
         }
 
         protected override IMvxTrace CreateDebugTrace()
