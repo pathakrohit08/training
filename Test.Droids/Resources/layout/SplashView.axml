@@ -37,6 +37,8 @@
         android:divider="@null"
         android:scrollbars="vertical"
         android:hint="Password"
+		android:inputType="textPassword"
+		android:password="true"
         android:padding="@dimen/default_horizontal_padding"
         android:choiceMode="singleChoice"
         android:layout_width="match_parent"

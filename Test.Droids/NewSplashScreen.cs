@@ -65,9 +65,9 @@ namespace Test.Droids
 
             private async Task DoSomeTaskAsync()
             {
-               await Task.Delay(5000);
-               PerformAnimation();
-               //PerformTask();
+               await Task.Delay(1000);
+              // PerformAnimation();
+               PerformTask();
 
 
             }
@@ -81,7 +81,7 @@ namespace Test.Droids
 
             private void PerformAnimation()
             {
-                Animation animation = new TranslateAnimation(0, 0, 0, -500);
+                Animation animation = new TranslateAnimation(0, 0, 0, -550);
 
                 animation.FillAfter = true;
                 animation.Duration = 1000;

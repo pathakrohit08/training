@@ -1,15 +1,19 @@
 ﻿
+using System;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
 using Android.Support.V4.Widget;
+using Android.Util;
 using Android.Views;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using MyTrains.Core.ViewModel;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Widget;
 
 namespace Test.Droids.Activities
 {
@@ -22,6 +26,9 @@ namespace Test.Droids.Activities
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
+        Fragment[] _fragments;
+        private ActionBar ab;
+        TabHost host;
 
         internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
 
@@ -40,26 +47,75 @@ namespace Test.Droids.Activities
             base.OnCreate(savedInstanceState);
 
             _fragmentManager = FragmentManager;
-
             SetContentView(Resource.Layout.MainView);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
+             //var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+             host= FindViewById<TabHost>(Resource.Id.tabhost);
 
-            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
-            _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout,
-                                Resource.String.drawer_open, Resource.String.drawer_close);
-            _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
-            _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
+            #region old
+            //SetSupportActionBar(toolbar);
 
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            _drawerToggle.DrawerIndicatorEnabled = true;
-            _drawerLayout.SetDrawerListener(_drawerToggle);
+            //_drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            //_drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
+            //_drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout,
+            //                    Resource.String.drawer_open, Resource.String.drawer_close);
+            //_drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
+            //_drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
 
-            ViewModel.ShowMenu();
-            ViewModel.ShowSearchJourneys();
+            //SupportActionBar.SetDisplayShowTitleEnabled(false);
+            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            //_drawerToggle.DrawerIndicatorEnabled = true;
+            //_drawerLayout.SetDrawerListener(_drawerToggle);
+
+            // ViewModel.ShowMenu();
+            // ViewModel.ShowSearchJourneys();
+
+            //this.ActionBar.SetDisplayShowHomeEnabled(false);
+            //this.ActionBar.SetDisplayShowTitleEnabled(false);
+            ////ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+            //ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+
+
+            //_fragments = new Fragment[]
+            //             {
+            //                 new WhatsOnFragment(),
+            //                 new SpeakersFragment(),
+            //                 new SessionsFragment()
+            //             };
+
+            //AddTabToActionBar(Resource.String.whatson_tab_label, Resource.Drawable.ic_action_whats_on);
+            //AddTabToActionBar(Resource.String.speakers_tab_label, Resource.Drawable.ic_action_speakers);
+            //AddTabToActionBar(Resource.String.sessions_tab_label, Resource.Drawable.ic_action_sessions);
+
+            #endregion
+
+
+            LocalActivityManager mLocalActivityManager = new LocalActivityManager(CurrentActivity, false);
+            mLocalActivityManager.DispatchCreate(savedInstanceState); // state will be bundle your activity state which you get in onCreate
+            host.Setup(mLocalActivityManager);
+
+            CreateTab(typeof(MyScheduleActivity), "whats_on", "What's On", Resource.Drawable.ic_action_sessions);
+            CreateTab(typeof(MyScheduleActivity), "speakers", "Speakers", Resource.Drawable.ic_action_speakers);
+            CreateTab(typeof(MyScheduleActivity), "sessions", "Sessions", Resource.Drawable.ic_action_whats_on);
+        }
+
+     
+
+        void AddTabToActionBar(int labelResourceId, int iconResourceId)
+        {
+            ActionBar.Tab tab = ActionBar.NewTab()
+                                         .SetText(labelResourceId)
+                                         .SetIcon(iconResourceId);
+            tab.TabSelected += TabOnTabSelected;
+            ActionBar.AddTab(tab);
+        }
+
+        void TabOnTabSelected(object sender, ActionBar.TabEventArgs tabEventArgs)
+        {
+            ActionBar.Tab tab = (ActionBar.Tab)sender;
+
+            Fragment frag = _fragments[tab.Position];
+            tabEventArgs.FragmentTransaction.Replace(Resource.Id.content_frame, frag);
         }
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
@@ -89,10 +145,10 @@ namespace Test.Droids.Activities
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (_drawerToggle.OnOptionsItemSelected(item))
-            {
-                return true;
-            }
+            //if (_drawerToggle.OnOptionsItemSelected(item))
+            //{
+            //    return true;
+            //}
 
             return base.OnOptionsItemSelected(item);
         }
@@ -100,13 +156,33 @@ namespace Test.Droids.Activities
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            _drawerToggle.SyncState();
+          //  _drawerToggle.SyncState();
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            _drawerToggle.SyncState();
+           // _drawerToggle.SyncState();
+        }
+
+        private void CreateTab(Type activityType, string tag, string labelResourceId, int iconResourceId)
+        {
+            var intent = new Intent(this, activityType);
+            intent.AddFlags(ActivityFlags.NewTask);
+
+            var spec = host.NewTabSpec(tag);
+            var drawableIcon = Resources.GetDrawable(iconResourceId);
+            spec.SetIndicator(labelResourceId, drawableIcon);
+            spec.SetContent(intent);
+
+            host.AddTab(spec);
+
+            //ActionBar.Tab tab = ActionBar.NewTab()
+            //                            .SetText(labelResourceId)
+            //                            .SetIcon(iconResourceId);
+            //tab.TabSelected += TabOnTabSelected;
+            //ActionBar.AddTab(tab);
         }
     }
+    
 }

@@ -11,9 +11,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toolbar Title"
+        android:text="@string/toolbar_title"
         android:layout_gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:id="@+id/toolbar_title" />
 </android.support.v7.widget.Toolbar>
