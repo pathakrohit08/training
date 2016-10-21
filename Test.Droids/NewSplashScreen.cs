@@ -6,7 +6,10 @@ using Android.Preferences;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Views;
+using MyTrains.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,111 +24,92 @@ namespace Test.Droids
         Theme = "@style/Theme.Splash", NoHistory = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
-    public class NewSplashScreen : MvxSplashScreenActivity
-    {
-        LinearLayout mLinearLayout;
-        LinearLayout mFooterLayout;
-        ImageButton im;
-        ISharedPreferencesEditor editor;
-        ISharedPreferences prefs;
-
-        public NewSplashScreen()
-        : base(Resource.Drawable.activity_splash)
+        public class NewSplashScreen : MvxCachingFragmentCompatActivity<SplashViewModel>
         {
+            LinearLayout mLinearLayout;
+            LinearLayout mFooterLayout;
+            ImageButton im;
+            LinearLayout includedLayout;
+            ISharedPreferencesEditor editor;
+            ISharedPreferences prefs;
 
-        }
-    
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-           // SetContentView(Resource.Drawable.activity_splash);
-            mLinearLayout = FindViewById<LinearLayout>(Resource.Id.loginlay);
-            mLinearLayout.Visibility = ViewStates.Gone;
-
-            mFooterLayout = FindViewById<LinearLayout>(Resource.Id.footer_layout);
-            mFooterLayout.Visibility = ViewStates.Gone;
-
-            im = FindViewById<ImageButton>(Resource.Id.move_button);
-            var something = DoSomeTaskAsync();
-
-            prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-            editor = prefs.Edit();
-            editor.Clear();
-            editor.Commit();
-
-            //something.ContinueWith(t =>
-            //{
-            //    #region old
-
-            //    // StartActivity(new Intent(Application.Context, typeof(Activity1)));
+            public new SplashViewModel ViewModel
+            {
+                get { return (SplashViewModel)base.ViewModel; }
+                set { base.ViewModel = value; }
+            }
 
 
+            protected override void OnCreate(Bundle bundle)
+            {
+                base.OnCreate(bundle);
+                SetContentView(Resource.Layout.SplashView);
 
-            //    // ResizeAnimation a = new ResizeAnimation(im);
-            //    // a.Duration = 1000;
-            //    // a.setParams(im.Height, 20);
-            //    //// im.StartAnimation(a);
+                mLinearLayout = FindViewById<LinearLayout>(Resource.Id.loginlay);
+                mLinearLayout.Visibility = ViewStates.Gone;
 
-            //    // AnimationSet s = new AnimationSet(false);//false means don't share interpolators
-            //    // s.AddAnimation(animation);
-            //    // //s.AddAnimation(a);
-            //    // im.StartAnimation(s);
+                mFooterLayout = FindViewById<LinearLayout>(Resource.Id.footer_layout);
+                mFooterLayout.Visibility = ViewStates.Gone;
 
-            //    #endregion
+                includedLayout = FindViewById<LinearLayout>(Resource.Id.internet_retry);
+                includedLayout.Visibility = ViewStates.Gone;
+                im = FindViewById<ImageButton>(Resource.Id.move_button);
+                var something = DoSomeTaskAsync();
 
+                prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+                editor = prefs.Edit();
+                editor.Clear();
+                editor.Commit();
+            
+            }
 
-
-            //    string userName = prefs.GetString("petSketch_username", null);
-            //    string password = prefs.GetString("petSketch_pwd", null);
-
-            //    if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
-            //        PerformAnimation();
-            //    else
-            //        PerformTask();
-
-            //}, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        private async Task DoSomeTaskAsync()
-        {
-            await Task.Delay(5000);
-            PerformAnimation();
+            private async Task DoSomeTaskAsync()
+            {
+               await Task.Delay(5000);
+               PerformAnimation();
+               //PerformTask();
 
 
-        }
+            }
 
-        private void PerformTask()
-        {
-            StartActivity(new Intent(Application.Context, typeof(Activity1)));
-        }
+            private void PerformTask()
+            {
 
-        private void PerformAnimation()
-        {
-            Animation animation = new TranslateAnimation(0, 0, 0, -500);
+               base.ViewModel.NavigateToMainView.Execute();
+             
+            }
 
-            animation.FillAfter = true;
-            animation.Duration = 1000;
-            animation.AnimationEnd += Animation_AnimationEnd;
-            im.StartAnimation(animation);
+            private void PerformAnimation()
+            {
+                Animation animation = new TranslateAnimation(0, 0, 0, -500);
 
-
-        }
-
-        private void Animation_AnimationEnd(object sender, Animation.AnimationEndEventArgs e)
-        {
-            mLinearLayout.Visibility = ViewStates.Visible;
-            mFooterLayout.Visibility = ViewStates.Visible;
-
-            editor.PutString("petSketch_username", "test_user");
-            editor.PutString("petSketch_pwd", "test_pwd");
-            editor.Apply();
-        }
+                animation.FillAfter = true;
+                animation.Duration = 1000;
+                animation.AnimationEnd += Animation_AnimationEnd;
+                im.StartAnimation(animation);
 
 
-        protected override void OnResume()
-        {
-            base.OnResume();
+            }
 
-        }
+            private void Animation_AnimationEnd(object sender, Animation.AnimationEndEventArgs e)
+            {
+                // includedLayout.Visibility = ViewStates.Visible;
+                mLinearLayout.Visibility = ViewStates.Visible;
+                mFooterLayout.Visibility = ViewStates.Visible;
+
+                editor.PutString("petSketch_username", "test_user");
+                editor.PutString("petSketch_pwd", "test_pwd");
+                editor.Apply();
+            }
+
+
+            protected override void OnResume()
+            {
+                base.OnResume();
+
+            }
+
+        
     }
+   
 }

@@ -26,12 +26,12 @@ namespace MyTrains.Core.ViewModel
 
         public void ShowMenu()
         {
-            ShowViewModel<MenuViewModel>();
+          //  ShowViewModel<MenuViewModel>();
         }
 
         public void ShowSearchJourneys()
         {
-            ShowViewModel<SearchJourneyViewModel>();
+            //ShowViewModel<SearchJourneyViewModel>();
         }
     }
 }

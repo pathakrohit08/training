@@ -57,6 +57,7 @@
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISettingsViewModel.cs" />
+    <Compile Include="Contracts\ViewModel\ISplashViewModel.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Messages\CurrencyChangedMessage.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="ViewModels\SearchJourneyViewModel.cs" />
     <Compile Include="ViewModels\SearchResultViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SplashViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

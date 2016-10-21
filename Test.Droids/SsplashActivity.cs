@@ -82,7 +82,7 @@ namespace Test.Droids
 
         private void PerformTask()
         {
-            StartActivity(new Intent(Application.Context, typeof(Activity1)));
+           // StartActivity(new Intent(Application.Context, typeof(Activity1)));
         }
 
         private void PerformAnimation()

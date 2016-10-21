@@ -50,7 +50,7 @@
             android:textColor="@color/white"
             android:textSize="17sp"
             android:layout_marginTop="@dimen/default_vertical_padding"
-            local:MvxBind="Click SearchCommand" />
+            local:MvxBind="Click NavigateToMainView" />
     
      <TextView
             android:id="@+id/tvText"
@@ -90,17 +90,8 @@
             android:textSize="17sp"
             android:layout_marginTop="@dimen/default_vertical_padding"/>
 
-       <!--<ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
-                android:src="@drawable/googleplus"
-                android:background="@drawable/roundedbutton"
-                android:padding="1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="62dp" />-->
-  
     </LinearLayout>
+
   <LinearLayout  android:id="@+id/internet_retry"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -128,7 +119,8 @@
         android:layout_marginRight="@dimen/default_vertical_padding"
         android:layout_marginBottom="@dimen/default_vertical_padding" />
   </LinearLayout>
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+  <LinearLayout
     android:id="@+id/footer_layout"
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"

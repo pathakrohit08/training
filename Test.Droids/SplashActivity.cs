@@ -41,7 +41,7 @@ namespace Test.Droids
             startupWork.ContinueWith(t =>
             {
                 Log.Debug(TAG, "Work is finished - start Activity1.");
-                StartActivity(new Intent(Application.Context, typeof(Activity1)));
+               // StartActivity(new Intent(Application.Context, typeof(Activity1)));
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             startupWork.Start();

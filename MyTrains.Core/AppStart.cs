@@ -2,6 +2,7 @@
 using MvvmCross.Platform;
 using MyTrains.Core.Contracts.Services;
 using MyTrains.Core.ViewModel;
+using MyTrains.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace MyTrains.Core
             var userService = Mvx.Resolve<IUserDataService>();
             await userService.Login("gillcleeren", "123456");
 
-            ShowViewModel<MainViewModel>();
+            ShowViewModel<SplashViewModel>();
         }
     }
 }

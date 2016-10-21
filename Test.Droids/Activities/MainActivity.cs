@@ -1,42 +1,47 @@
-﻿using Android.App;
+﻿
+using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
 using Android.Support.V4.Widget;
-using Android.Util;
 using Android.Views;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
-//using MyTrains.Core.ViewModel;
+using MyTrains.Core.ViewModel;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace Test.Droids
+namespace Test.Droids.Activities
 {
-
     [Activity(Label = "Main Activity", Theme = "@style/AppTheme",
-      LaunchMode = LaunchMode.SingleTop,
-      ScreenOrientation = ScreenOrientation.Portrait)]
-    public class Activity1 : MvxCachingFragmentCompatActivity<MainViewModel>
+        LaunchMode = LaunchMode.SingleTop,
+        ScreenOrientation = ScreenOrientation.Portrait,
+        Name = "test.droids.activities.MainActivity")]
+    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        static readonly string TAG = "X:" + typeof(Activity1).Name;
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
 
         internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
 
-        static Activity1 instance = new Activity1();
+        static MainActivity instance = new MainActivity();
 
-        public static Activity1 CurrentActivity => instance;
+        public static MainActivity CurrentActivity => instance;
+
+        public new MainViewModel ViewModel
+        {
+            get { return (MainViewModel)base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
             _fragmentManager = FragmentManager;
 
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.MainView);
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
@@ -53,51 +58,8 @@ namespace Test.Droids
             _drawerToggle.DrawerIndicatorEnabled = true;
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
-            #region old
-
-            //ImageButton im = FindViewById<ImageButton>(Resource.Id.move_button);
-            ////set position TranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta
-            //Animation animation = new TranslateAnimation(0, 500, 0, 0);
-            //// set Animation for 5 sec
-            //animation.Duration = 1000;
-            ////for button stops in the new position.
-            //animation.FillAfter = true;
-            //im.StartAnimation(animation);
-
-
-            //mLinearLayout = FindViewById<LinearLayout>(Resource.Id.expandable);
-            //mLinearLayout.Visibility = ViewStates.Gone;
-            //mLinearLayoutHeader = FindViewById<LinearLayout>(Resource.Id.header);
-            //mLinearLayoutHeader.Click += (s, e) =>
-            //{
-            //    if (mLinearLayout.Visibility.Equals(ViewStates.Gone))
-            //    {
-            //        //set Visible
-            //        mLinearLayout.Visibility = ViewStates.Visible;
-            //        int widthSpec = View.MeasureSpec.MakeMeasureSpec(0, MeasureSpecMode.Unspecified);
-            //        int heightSpec = View.MeasureSpec.MakeMeasureSpec(0, MeasureSpecMode.Unspecified);
-            //        mLinearLayout.Measure(widthSpec, heightSpec);
-
-            //        ValueAnimator mAnimator = slideAnimator(0, mLinearLayout.MeasuredHeight);
-            //        mAnimator.Start();
-
-            //    }
-            //    else
-            //    {
-            //        //collapse();
-            //        int finalHeight = mLinearLayout.Height;
-
-            //        ValueAnimator mAnimator = slideAnimator(finalHeight, 0);
-            //        mAnimator.Start();
-            //        mAnimator.AnimationEnd += (object IntentSender, EventArgs arg) => {
-            //            mLinearLayout.Visibility = ViewStates.Gone;
-            //        };
-            //    }
-            //};
-
-            #endregion
-
-            Log.Debug(TAG, "Activity1 is loaded.");
+            ViewModel.ShowMenu();
+            ViewModel.ShowSearchJourneys();
         }
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
@@ -146,29 +108,5 @@ namespace Test.Droids
             base.OnConfigurationChanged(newConfig);
             _drawerToggle.SyncState();
         }
-        #region old
-        //private ValueAnimator slideAnimator(int start, int end)
-        //{
-
-        //    ValueAnimator animator = ValueAnimator.OfInt(start, end);
-        //    animator.Update +=
-        //        (object sender, ValueAnimator.AnimatorUpdateEventArgs e) => {
-        //        var value = (int)animator.AnimatedValue;
-        //            ViewGroup.LayoutParams layoutParams = mLinearLayout.LayoutParameters;
-        //            layoutParams.Height = value;
-        //            mLinearLayout.LayoutParameters = layoutParams;
-
-        //        };
-        //    return animator;
-        //}
-
-        #endregion
-    }
-    public class MainViewModel : MvxViewModel
-    {
-
-    }
-    public class MenuViewModel
-    {
     }
 }
