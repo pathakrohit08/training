@@ -23,14 +23,14 @@ namespace Test.Droids.Activities
         Name = "test.droids.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        private DrawerLayout _drawerLayout;
+        
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
         Fragment[] _fragments;
         private ActionBar ab;
         TabHost host;
 
-        internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
+        
 
         static MainActivity instance = new MainActivity();
 
@@ -88,15 +88,9 @@ namespace Test.Droids.Activities
             //AddTabToActionBar(Resource.String.sessions_tab_label, Resource.Drawable.ic_action_sessions);
 
             #endregion
+            
 
-
-            LocalActivityManager mLocalActivityManager = new LocalActivityManager(CurrentActivity, false);
-            mLocalActivityManager.DispatchCreate(savedInstanceState); // state will be bundle your activity state which you get in onCreate
-            host.Setup(mLocalActivityManager);
-
-            CreateTab(typeof(MyScheduleActivity), "whats_on", "What's On", Resource.Drawable.ic_action_sessions);
-            CreateTab(typeof(MyScheduleActivity), "speakers", "Speakers", Resource.Drawable.ic_action_speakers);
-            CreateTab(typeof(MyScheduleActivity), "sessions", "Sessions", Resource.Drawable.ic_action_whats_on);
+            
         }
 
      
@@ -128,20 +122,6 @@ namespace Test.Droids.Activities
             InvalidateOptionsMenu();
         }
 
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
-        {
-            var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
-
-            if (currentFrag != null && fragmentInfo.ViewModelType != typeof(MenuViewModel)
-                && currentFrag.FindAssociatedViewModelType() != fragmentInfo.ViewModelType)
-                fragmentInfo.AddToBackStack = true;
-            base.OnBeforeFragmentChanging(fragmentInfo, transaction);
-        }
-
-        internal void CloseDrawerMenu()
-        {
-            _drawerLayout.CloseDrawers();
-        }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -165,24 +145,7 @@ namespace Test.Droids.Activities
            // _drawerToggle.SyncState();
         }
 
-        private void CreateTab(Type activityType, string tag, string labelResourceId, int iconResourceId)
-        {
-            var intent = new Intent(this, activityType);
-            intent.AddFlags(ActivityFlags.NewTask);
-
-            var spec = host.NewTabSpec(tag);
-            var drawableIcon = Resources.GetDrawable(iconResourceId);
-            spec.SetIndicator(labelResourceId, drawableIcon);
-            spec.SetContent(intent);
-
-            host.AddTab(spec);
-
-            //ActionBar.Tab tab = ActionBar.NewTab()
-            //                            .SetText(labelResourceId)
-            //                            .SetIcon(iconResourceId);
-            //tab.TabSelected += TabOnTabSelected;
-            //ActionBar.AddTab(tab);
-        }
+        
     }
     
 }

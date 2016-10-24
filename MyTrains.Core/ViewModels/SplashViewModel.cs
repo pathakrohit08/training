@@ -18,7 +18,8 @@ namespace MyTrains.Core.ViewModels
             {
                 return new MvxCommand<User>(selectedJourney =>
                 {
-                    ShowViewModel<MainViewModel>();
+                   // ShowViewModel<MainViewModel>();
+                    ShowViewModel<TestViewModel>();
                 });
             }
         }

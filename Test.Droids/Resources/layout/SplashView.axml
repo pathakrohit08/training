@@ -6,82 +6,86 @@
     android:layout_height="match_parent"
     android:background="#FFF" >
 
-   <ImageButton
-      android:id="@+id/move_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerInParent="true"
-      android:background="#FFF"
-      android:src="@drawable/splash_logo" />
-  
+  <ImageButton
+     android:id="@+id/move_button"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_centerInParent="true"
+     android:background="#FFF"
+     android:src="@drawable/splash_logo" />
+
+
   <LinearLayout
-        android:id="@+id/loginlay"
+        android:id="@+id/login_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
+        android:padding="10dp"
         android:orientation="vertical">
 
     <EditText
-        android:id="@+id/searchresults_list"
-        android:divider="@null"
+        android:id="@+id/username_text"
         android:scrollbars="vertical"
-        android:hint="Username"
-        android:padding="@dimen/default_horizontal_padding"
-        android:choiceMode="singleChoice"
+        android:hint=" Username"
+        android:ems="2"
+        android:padding="5dp"
+        android:background="@layout/textview_sample"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    
+
     <EditText
-        android:id="@+id/password"
-        android:divider="@null"
-        android:scrollbars="vertical"
+        android:id="@+id/password_text"
         android:hint="Password"
-		android:inputType="textPassword"
-		android:password="true"
-        android:padding="@dimen/default_horizontal_padding"
-        android:choiceMode="singleChoice"
+        android:ems="2"
+		    android:inputType="textPassword"
+		    android:password="true"
+        android:padding="5dp"
+        android:background="@layout/textview_sample"
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="match_parent"/>
-     <Button
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:background="@drawable/sample_button"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:layout_marginTop="@dimen/default_vertical_padding"
-            local:MvxBind="Click NavigateToMainView" />
-    
-     <TextView
-            android:id="@+id/tvText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="OR"
-            android:textColor="#FFFFFF"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_toLeftOf="@id/tvText"
-            android:background="#FF0000"
+    <Button
+           android:id="@+id/login_btn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Login"
+           android:background="@drawable/sample_button"
+           android:textColor="@color/white"
+           android:textSize="17sp"
+           android:layout_marginTop="20dp"
+
+           local:MvxBind="Click NavigateToMainView" />
+
+    <!--<TextView
+           android:id="@+id/tvText"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="10dp"
+           android:text="OR"
+           android:textColor="#FFFFFF"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_toLeftOf="@id/tvText"
+        android:background="#FF0000"
             />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_toRightOf="@id/tvText"
-            android:background="#FF0000"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:layout_toRightOf="@id/tvText"
+        android:background="#FF0000"
             />
-    
+
     <Button
             android:id="@+id/register"
             android:layout_width="match_parent"
@@ -90,9 +94,66 @@
             android:background="@drawable/sample_button"
             android:textColor="@color/black"
             android:textSize="17sp"
-            android:layout_marginTop="@dimen/default_vertical_padding"/>
+            android:layout_marginTop="@dimen/default_vertical_padding"/>-->
 
-    </LinearLayout>
+  </LinearLayout>
+
+  <LinearLayout
+        android:id="@+id/register_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/username_email"
+        android:scrollbars="vertical"
+        android:hint=" username or email"
+        android:ems="2"
+        android:padding="5dp"
+        android:background="@layout/textview_sample"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <EditText
+        android:id="@+id/password_reg"
+        android:hint="enter a password"
+        android:ems="2"
+		    android:inputType="textPassword"
+		    android:password="true"
+        android:padding="5dp"
+        android:background="@layout/textview_sample"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"/>
+
+    <EditText
+        android:id="@+id/confirmpassword_reg"
+        android:hint="confirm password"
+        android:ems="2"
+		    android:inputType="textPassword"
+		    android:password="true"
+        android:padding="5dp"
+        android:background="@layout/textview_sample"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"/>
+
+    <Button
+           android:id="@+id/signup_btn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Register"
+           android:background="@drawable/sample_button"
+           android:textColor="@color/white"
+           android:textSize="17sp"
+           android:layout_marginTop="20dp"/>
+
+    
+
+  </LinearLayout>
 
   <LinearLayout  android:id="@+id/internet_retry"
         android:layout_width="fill_parent"
@@ -100,13 +161,13 @@
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:orientation="vertical">
-     <TextView
-        android:id="@+id/internet_info"
-        android:text="Cannot Find Internet"
-        android:textSize="15pt"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" />
+    <TextView
+       android:id="@+id/internet_info"
+       android:text="Cannot Find Internet"
+       android:textSize="15pt"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:layout_weight="1" />
     <Button
         android:id="@+id/register"
         android:layout_below="@+id/internet_info"
@@ -127,20 +188,32 @@
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
               android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
-  
- <Button
-            android:id="@+id/register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account? Sign up."
-            android:background="@drawable/sample_button"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:layout_marginTop="@dimen/default_vertical_padding"
-            android:layout_marginLeft="@dimen/default_vertical_padding"
-            android:layout_marginRight="@dimen/default_vertical_padding"
-            android:layout_marginBottom="@dimen/default_vertical_padding" />
-</LinearLayout>
-</RelativeLayout>
+    android:orientation="vertical"
+              android:layout_centerHorizontal="true">
 
+    <TextView
+               android:id="@+id/account_text"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:text="Dont have an account ? Sign up here"
+               android:textColor="#0674AD"
+               android:textSize="17sp"
+               android:layout_marginTop="@dimen/default_vertical_padding"
+               android:layout_marginLeft="@dimen/default_vertical_padding"
+               android:layout_marginRight="@dimen/default_vertical_padding"/>
+    <TextView
+               android:id="@+id/copyright_text"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_below="@+id/account_text"
+               android:text="Copyright \u00a9 2013, All rights reserved"
+               android:textColor="#d3d3d3"
+               android:textSize="12sp"
+               android:layout_marginLeft="@dimen/default_vertical_padding"
+               android:layout_marginRight="@dimen/default_vertical_padding"
+               android:layout_marginBottom="@dimen/default_vertical_padding" />
+
+  </LinearLayout>
+</RelativeLayout>

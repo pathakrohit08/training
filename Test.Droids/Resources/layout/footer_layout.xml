@@ -1,0 +1,35 @@
+﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footer_layout"
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+              android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+              android:layout_centerHorizontal="true">
+
+  <TextView
+             android:id="@+id/account_text"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+              android:gravity="center"
+             android:text="Dont have an account ? Sign up here"
+             android:textColor="#0674AD"
+             android:textSize="17sp"
+             android:layout_marginTop="@dimen/default_vertical_padding"
+             android:layout_marginLeft="@dimen/default_vertical_padding"
+             android:layout_marginRight="@dimen/default_vertical_padding"
+             android:layout_marginBottom="@dimen/default_vertical_padding" />
+  <TextView
+             android:id="@+id/copyright_text"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:layout_below="@+id/account_text"
+             android:text="Copyright \u00a9 2013, All rights reserved"
+             android:textColor="#d3d3d3"
+             android:textSize="12sp"
+             android:layout_marginTop="@dimen/default_vertical_padding"
+             android:layout_marginLeft="@dimen/default_vertical_padding"
+             android:layout_marginRight="@dimen/default_vertical_padding"
+             android:layout_marginBottom="@dimen/default_vertical_padding" />
+
+</LinearLayout>

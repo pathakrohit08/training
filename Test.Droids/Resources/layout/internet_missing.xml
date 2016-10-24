@@ -1,0 +1,28 @@
+﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+        android:id="@+id/internet_retry"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+  <TextView
+     android:id="@+id/internet_info"
+     android:text="Cannot Find Internet"
+     android:textSize="15pt"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:layout_weight="1" />
+  <Button
+      android:id="@+id/register"
+      android:layout_below="@+id/internet_info"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Click here to Retry."
+      android:background="@drawable/sample_button"
+      android:textColor="@color/black"
+      android:textSize="17sp"
+      android:layout_marginTop="@dimen/default_vertical_padding"
+      android:layout_marginLeft="@dimen/default_vertical_padding"
+      android:layout_marginRight="@dimen/default_vertical_padding"
+      android:layout_marginBottom="@dimen/default_vertical_padding" />
+</LinearLayout>
